@@ -1,25 +1,30 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int main() {
-    int n,k;
+    int n;
     scanf("%d",&n);
 
-    int arr[n];
+    int a[n];
 
     for(int i=0;i<n;i++)
-        scanf("%d",&arr[i]);
+        scanf("%d",&a[i]);
 
-    scanf("%d",&k);
+    int min = abs(a[0] + a[1]);
+    int x = a[0], y = a[1];
 
-    k=k%n;
+    for(int i=0;i<n;i++){
+        for(int j=i+1;j<n;j++){
+            int sum = abs(a[i] + a[j]);
+            if(sum < min){
+                min = sum;
+                x = a[i];
+                y = a[j];
+            }
+        }
+    }
 
-    int temp[n];
-
-    for(int i=0;i<n;i++)
-        temp[(i+k)%n]=arr[i];
-
-    for(int i=0;i<n;i++)
-        printf("%d ",temp[i]);
+    printf("%d %d",x,y);
 
     return 0;
 }
